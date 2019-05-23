@@ -26,3 +26,7 @@ Route::get('student/delete/{id}', 'TestController@handleDeleteStudent')->name('h
 
 Route::get('student/showStudentDetails/{id}', 'TestController@showStudentDetails')->name('showStudentDetails');
 
+Route::get('student/edit/{id}', 'TestController@showUpdateStudent')->name('showUpdateStudent');
+
+Route::post('student/{id}', 'TestController@handleUpdateStudent')->name('handleUpdateStudent');
+

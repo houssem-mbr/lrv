@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;//à la place de Student::all() on remplace par DB::table('student') en update et add
 use App\Classroom;
 use App\Student;
 use Illuminate\Support\Facades\Input;
@@ -59,7 +60,7 @@ class TestController extends Controller
             'password' =>bcrypt($data['password']),
             'classroom_id' =>$data['classroom'],
         ]);
-        return back();
+       return redirect('classroom/showClassroom');
         
 
         //dd($data['title']);
@@ -84,6 +85,53 @@ class TestController extends Controller
         $student = Student::find($id);
         $classrooms = Classroom::all();
         return view('student.showStudentDetails', ['student' => $student], ['class' => $classrooms]);
+
+    }
+
+
+    public function showUpdateStudent($id){
+        $classrooms = Classroom::all();
+        $student = Student::find($id);
+        if ($student) {
+           return view('student.edit', ['student' => $student, 'class' => $classrooms]);
+        }
+
+
+    }
+
+    public function handleUpdatestudent(Request $request, $id){
+
+        $student = student::find($id);
+        if ($student) {
+            $student->name = $request->input('name');
+            $student->email = $request->input('email');
+            $student->classroom_id = $request->input('classroom');
+            $student->save();
+             return redirect('classroom/showClassroom');
+
+        }else{
+            return back();
+        }
+       
+
+       
+
+        /*
+        ----------------------------
+        autre méthode (save):
+        ----------------------------
+
+        $data = Input::all();
+        $student->name = $data['name'];
+        $student->email = $data['email'];
+        $student->classroom_id = $data['classroom'];
+        $student->save();
+
+
+
+
+         */
+
 
     }
 

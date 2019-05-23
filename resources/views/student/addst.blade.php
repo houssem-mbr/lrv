@@ -16,9 +16,10 @@
 			
 			@endforeach
 		</select>
-		<button type="submit">OK</button>
+		<hr>
+		<button class="btn btn-primary" type="submit">Ajouter</button>
 	</form>
 
-	<a class="btn btn-success" href="{{  url('classroom/showClassroom') }} ">Ajouter Étudiant</a>
+	<a class="btn btn-success" href="{{  url('classroom/showClassroom') }} ">Rentrer</a>
 	
 </div>

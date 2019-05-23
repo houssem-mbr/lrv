@@ -14,20 +14,22 @@
 	<div class="container">
 		<div class="row">
 	@foreach ($class as $elm)
-	<div class="card" style="width: 18rem;">
-		<img style="width: 100%;height: 100%" src="{{ $elm->photo }}" class="card-img-top img-thumbnail" alt="...">
+	<div class="card" style="width: 20rem;">
+		<img style="width: 400px;height: 300px" src="{{ $elm->photo }}" class="card-img-top img-thumbnail" alt="...">
 		<div class="card-body">
-			<h5 class="card-title">Nom de classe: {{ $elm->title }}</h5>
-			<br>
+			<h5 class="card-title">Nom de classe: <span style="text-transform: uppercase;">{{ $elm->title }}</span></h5>
+			<hr>
 			<ul>
 			@foreach ($elm->students as $element)
-				<li class="mb-2"><a class="p-2 bg-light text-success" href="{{ route('showStudentDetails', ['id'=>$element->id]) }}">{{  $element->name }}</a></li>
-				<br>
+				<li class="mb-2"><h5 style="font-style: italic;text-transform: uppercase;"><a class="p-2 bg-light text-success" href="{{ route('showStudentDetails', ['id'=>$element->id]) }}">{{  $element->name }}</a></h5></li>
 				<a class="btn btn-danger mb-2" href="{{ url('student/delete/'.$element->id) }} ">Supprimer</a>
+				<br>
+				<a href="{{ url('student/edit/'.$element->id) }}" class="btn btn-primary">Modifier l'étudiant</a>
+				<hr>
 			@endforeach
 			</ul>
 			<h6>Nombre d'étudiants: {{ $elm->students->count() }}</h6>
-			<a href="{{ route('showStudentDetails', ['id'=>$element->id]) }}" class="btn btn-primary">Go somewhere</a>
+			
 		</div >
 	</div>
 	@endforeach
