@@ -1,10 +1,13 @@
 			
 
 
-<form action="{{route('handleAddClassroom')}}" method="POST">
+<form action="{{route('handleAddClassroom')}}" method="POST" enctype="multipart/form-data">
 	
 {{ csrf_field() }}
+<label for="title">Nom de classe</label>
  <input class="form-control" type="text" name="title">
- <input type="text" name="photo">
-	<button type="submit">OK</button>
+ <label for="title">Image de classe</label>
+ <input class="form-control" type="file" name="photo">
+<hr>
+	<button type="submit">Ajouter</button>
 </form>

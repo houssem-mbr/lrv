@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;//à la place de Student::all() on remplace par DB::table('student') en update et add
 use App\Classroom;
 use App\Student;
+use Image;
 use Illuminate\Support\Facades\Input;
 
 class TestController extends Controller
@@ -28,11 +29,19 @@ class TestController extends Controller
 
     public function handleAddClassroom(){
     	$data = input::all();
+          $photo = 'photo-' . str_random(5) . time() . '.' . $data['photo']->getClientOriginalExtension();
+
+            $fullImagePath = public_path('storage/classrooms/' . $photo);
+
+            Image::make($data['photo']->getRealPath())->save($fullImagePath);
+
+            $photoPath = 'storage/classrooms/' . $photo;
     	classroom::create([
     		'title' =>$data['title'],
-    		'photo' =>$data['photo']
+            'photo' =>$photoPath
     	]);
-    	return view('classroom.add');
+       
+    	return redirect('classroom/showClassroom');
 
     	//dd($data['title']);
     

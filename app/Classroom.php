@@ -23,6 +23,7 @@ class Classroom extends Model
         return $this->hasMany('MODELE/CHORBA', 'clé étrangère', 'id');
 
     }
+   
 
      */
 }

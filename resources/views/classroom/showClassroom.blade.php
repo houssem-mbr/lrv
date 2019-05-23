@@ -15,7 +15,7 @@
 		<div class="row">
 	@foreach ($class as $elm)
 	<div class="card" style="width: 20rem;">
-		<img style="width: 400px;height: 300px" src="{{ $elm->photo }}" class="card-img-top img-thumbnail" alt="...">
+		<img style="width: 400px;height: 300px" src="{{ asset($elm->photo) }}" class="card-img-top img-thumbnail" alt="...">
 		<div class="card-body">
 			<h5 class="card-title">Nom de classe: <span style="text-transform: uppercase;">{{ $elm->title }}</span></h5>
 			<hr>
