@@ -20,6 +20,6 @@
 		<button class="btn btn-primary" type="submit">Ajouter</button>
 	</form>
 
-	<a class="btn btn-success" href="{{  url('classroom/showClassroom') }} ">Rentrer</a>
+	<a class="btn btn-success" href="{{  url('/') }} ">Rentrer</a>
 	
 </div>

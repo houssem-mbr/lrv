@@ -8,6 +8,8 @@ use App\Classroom;
 use App\Student;
 use Image;
 use Illuminate\Support\Facades\Input;
+use Auth;
+use Carbon\Carbon;
 
 class TestController extends Controller
 {
@@ -15,7 +17,7 @@ class TestController extends Controller
 
   
     	$classrooms = Classroom::all();
-    	return view('classroom.showClassroom', ['class' => $classrooms]);
+    	return view('welcome', ['class' => $classrooms]);
 
     }
 
@@ -41,7 +43,7 @@ class TestController extends Controller
             'photo' =>$photoPath
     	]);
        
-    	return redirect('classroom/showClassroom');
+    	return redirect('/');
 
     	//dd($data['title']);
     
@@ -69,7 +71,7 @@ class TestController extends Controller
             'password' =>bcrypt($data['password']),
             'classroom_id' =>$data['classroom'],
         ]);
-       return redirect('classroom/showClassroom');
+       return redirect('/');
         
 
         //dd($data['title']);
@@ -85,7 +87,7 @@ class TestController extends Controller
          }else{
             return 'Erreur';
          }
-         return redirect('classroom/showClassroom');
+         return redirect('/');
 
 
     }
@@ -99,6 +101,7 @@ class TestController extends Controller
 
 
     public function showUpdateStudent($id){
+
         $classrooms = Classroom::all();
         $student = Student::find($id);
         if ($student) {
@@ -116,7 +119,7 @@ class TestController extends Controller
             $student->email = $request->input('email');
             $student->classroom_id = $request->input('classroom');
             $student->save();
-             return redirect('classroom/showClassroom');
+             return redirect('/');
 
         }else{
             return back();
@@ -143,6 +146,56 @@ class TestController extends Controller
 
 
     }
+    public function showStudentLogin(){
+        return view('student.loginStudent') ;
+    }
+
+    public function handleStudentLogin(){
 
 
+        $data = Input::all();
+        dd($data);
+        $cred = [
+                'email' => $data['email'], 
+                'password' => $data['password']
+            ];
+            dd(Auth::user(), $cred);
+
+        if (Auth::attempt($cred)) {//pour comparer esque l'utilisateur enregistré ou nn
+            
+             return redirect(route('welcome'));
+
+        }else{
+
+            return back();
+        }
+
+
+            
+        }
+
+    public function handleStudentLogout(){
+
+        Auth::logout();
+        return redirect('student/loginStudent');
+    }
+
+    public function test_connection()
+    {
+         $data = Input::all();
+            $cred = [
+                'email' => $data['email'], 
+                'password' => $data['password']
+            ];
+          if (Auth::attempt($cred)) {//pour comparer esque l'utilisateur enregistré ou nn
+            
+             return redirect('/');
+
+        }else{
+            
+            return back();
+        }
+
+
+    }
 }

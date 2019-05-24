@@ -30,7 +30,7 @@
 <div class="row">
 	<div class="col-md-12 text-center">
 		
-		<a class="btn btn-dark" href="{{ url('classroom/showClassroom') }}">Renter au liste des classes</a>
+		<a class="btn btn-dark" href="{{ url('/') }}">Renter au liste des classes</a>
 
 	</div>
 	

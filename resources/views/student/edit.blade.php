@@ -19,6 +19,6 @@
 		<button class="btn btn-primary" value="Modifier" type="submit">Modifier</button>
 	</form>
 
-	<a class="btn btn-success" href="{{  url('classroom/showClassroom') }} ">Ajouter Étudiant</a>
+	<a class="btn btn-success" href="{{  url('/') }} ">Rentrer à l'accueil</a>
 	
 </div>
